@@ -1,26 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bar App</title>
 
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+                 * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
     <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+    <!-- Css Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Viga&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<body>
     <div class="container">
 
         <br>
 
         <!--Jumbotron-->
         <div class="jumbotron">
-            <h1 class="text-center">Bar Advisor</h1>
+            <h1 class="text-center">BAR ADVISOR</h1>
+        </div>
+
+        <!-- Input field for User Zip Code -->
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Zip Code">
+            <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-secondary" type="button"
+                    style="color: white; background:black;">Go</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <!--Added div, class, and id-->
+                <div class="bars-img">
+                    <!-- Bars Icon -->
+                    <img src="http://icons.iconarchive.com/icons/graphicloads/food-drink/96/drink-2-icon.png"
+                        class="image">
+                    <h2>Bars</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!--Added div, id and class-->
+                <div class="drinks">
+                    <!--Drink Specials Icon-->
+                    <img id="drinks-img" src="http://icons.iconarchive.com/icons/flat-icons.com/flat/96/Beer-icon.png"
+                        class="image">
+                    <h2>Drink Specials</h2>
+                    
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!--Added div, class, and id-->
+                <div class="yelp-img">
+                    <!-- Yelp Reviews Icon -->
+                    <img src="http://icons.iconarchive.com/icons/sicons/basic-round-social/96/yelp-icon.png"
+                        class="image">
+                    <h2>Yelp Reviews</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!--Added div, id and class-->
+                <div class="car">
+                    <!--Designated Driver Icon-->
+                    <img id="car-img"
+                        src="http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/96/Car-icon.png"
+                        class="image">
+                    <h2>Designated Driver</h2>
+                </div>
+            </div>
         </div>
     </div>
-    
+
+
+    <h3>Map:</h3>
+    <div id="map" class="map"></div>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoaFes8CwSg9uHSmPlGE3YsqEXdp5OyWY&callback=initMap"
+        class="maps-src">
+        </script>
+
+    <!--Added footer-->
+    <footer></footer>
+
+
+
+    <!-- Javascript link -->
+    <script src="assets/javascript/app.js"></script>
+
 </body>
+
 </html>
