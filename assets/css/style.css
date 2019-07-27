@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://wallpaperplay.com/walls/full/4/6/c/182533.jpg);
+    background-size: cover;
+    color: white;
+    font-family: 'Viga', sans-serif;
+}
+
+h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding-left: 200px;
+}
+
+footer {
+    padding: 35px;
+}
+
+.jumbotron {
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_pic/02/51/15/50578095df26e33.jpg);
+    background-size: 100% 100%;
+    color: white;
+}
+
+h1 {
+    font-size: 60px;
+    -webkit-text-fill-color: rgb(12, 133, 133);
+    -webkit-text-stroke-width: 2px;
+    color:white;
+    
+}
+
+.bars-img, .yelp-img {
+    margin-left: 200px;
+}
+
+.bars-img {
+    margin-bottom: 35px;
+}
+
+.map {
+    width: 850px;
+    margin-left: 200px;
+}
+
+.car, .drinks {
+    margin-left: 100px;
+}
