@@ -44,73 +44,71 @@
             <h1 class="text-center">BAR ADVISOR</h1>
         </div>
 
-        <!-- Input field for User Zip Code -->
-        <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Zip Code">
+        <!-- Input field for User City -->
+        <!-- <form id="geolocation-input"></form> -->
+            <!-- <label for="geolocation-input"></label> -->
+        
+
+            <!-- Button triggers new feeling to be added -->
+            <!-- <button id="city-search"> -->
+        <!-- </form> -->
+
+        <!-- TEST FOR ON CLICK EVENT -->
+        <button onclick="displayBars()">Show Bars Near Me</button>
+
+        <!-- <p id="demo"></p> -->
+
+
+        <!-- END TEST -->
+
+
+        <!-- <div class="input-group input-group-lg">
+            <input type="text" class="form-control" id="city-search" placeholder="City here">
             <div class="input-group-append" id="button-addon4">
-                <button class="btn btn-outline-secondary" type="button"
+                <button class="btn btn-outline-secondary" id= "city-search" type="button"
                     style="color: white; background:black;">Go</button>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-6">
-                <!--Added div, class, and id-->
-                <div class="bars-img">
-                    <!-- Bars Icon -->
-                    <img src="http://icons.iconarchive.com/icons/graphicloads/food-drink/96/drink-2-icon.png"
-                        class="image">
-                    <h2>Bars</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <!--Added div, id and class-->
-                <div class="drinks">
-                    <!--Drink Specials Icon-->
-                    <img id="drinks-img" src="http://icons.iconarchive.com/icons/flat-icons.com/flat/96/Beer-icon.png"
-                        class="image">
-                    <h2>Drink Specials</h2>
-                    
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <!--Added div, class, and id-->
-                <div class="yelp-img">
-                    <!-- Yelp Reviews Icon -->
-                    <img src="http://icons.iconarchive.com/icons/sicons/basic-round-social/96/yelp-icon.png"
-                        class="image">
-                    <h2>Yelp Reviews</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <!--Added div, id and class-->
-                <div class="car">
-                    <!--Designated Driver Icon-->
-                    <img id="car-img"
-                        src="http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/96/Car-icon.png"
-                        class="image">
-                    <h2>Designated Driver</h2>
-                </div>
-            </div>
-        </div>
+        </div> -->
     </div>
 
-
+    <!-- Rendered Google Map here -->
     <h3>Map:</h3>
     <div id="map" class="map"></div>
 
+    <!-- Div Row to contain all the Bars -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="bars-list"></div>
+        </div>
+    </div>
+
+    <!-- Div Row to contain all the Drink Specials -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="drink-specials"></div>
+        </div>
+    </div>
+
+    <!-- Div Row to contain all the Yelp Reviews -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="yelp-reviews"></div>
+        </div>
+    </div>
+
+    <!--Added footer-->
+    <footer></footer>
+
+    <script></script>
+
+    <!-- Google Maps Call -->
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoaFes8CwSg9uHSmPlGE3YsqEXdp5OyWY&callback=initMap"
         class="maps-src">
         </script>
 
-    <!--Added footer-->
-    <footer></footer>
-
-
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Javascript link -->
     <script src="assets/javascript/app.js"></script>
