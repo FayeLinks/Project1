@@ -1,6 +1,6 @@
 // The Google Geolocation starts here
 var map, infoWindow;
-var pos = initMap();
+var pos;
 var barLocations = [];
 
 // Pulls visual map from Google API and display it in the DOM
