@@ -1,34 +1,31 @@
 // The Google Geolocation starts here
 var map, infoWindow;
 var pos = initMap();
-// var marker = new google.maps.Marker({
-//   position: {lat:28.561990299999998, lng:-81.19678499999999},
-//   map:map,
-// });
+var barLocations = [];
 
+// Pulls visual map from Google API and display it in the DOM
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 17,
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 15,
   });
-  infoWindow = new google.maps.InfoWindow;
-  // content:"<h1> You are here </h1>"
-  // });
+
+  infoWindow = new google.maps.InfoWindow();
 
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
+      infoWindow.setContent('You are here');
       infoWindow.open(map);
       map.setCenter(pos);
       console.log(pos);
-    }, function() {
+    }, function () {
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
@@ -37,81 +34,116 @@ function initMap() {
   }
 }
 
-// Add marker function
-// function addMarker(coords) {
-//   marker = new google.maps.Marker({
-//     position: coords,
-//     map:map,
-//   });
-// }
-
-// marker.addEventListener(function() {
-//   infoWindow.open(map, marker);
-// });
-
 // Shows error if the geolocation is selected by the user
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
-} 
+}
 
-// initMap();
 
 // Start the function to call the data for the bars in the area surrounding the POS location above
 
 function displayBars() {
-//var pos = $(this).attr("data-name");
 
-var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+pos.lat+","+pos.lng+"&radius=1500&type=bar&keyword=bar&key=AIzaSyDoaFes8CwSg9uHSmPlGE3YsqEXdp5OyWY"
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + pos.lat + "," + pos.lng + "&radius=1500&type=bar&keyword=bar&key=AIzaSyDoaFes8CwSg9uHSmPlGE3YsqEXdp5OyWY"
 
 
-// Create an AJAX call to the Google Places site
-$.ajax({
-  url: queryURL,
+  // Create an AJAX call to the Google Places site
+  $.ajax({
+    url: queryURL,
     method: "GET"
-}).then(function(resp) {
+  }).then(function (resp) {
     console.log(queryURL);
-    console.log(resp);     
-    
+    console.log(resp);
+
+    // Creating a variable to hold the API call results
     var results = resp.results;
-        
-    console.log(results); 
-});
- }
- //displayBars();
 
-//  $(document).on("click", "#city-search", displayBars);
+    console.log(results);
 
-$("#city-search").on("click", function(event) {
+    for (var i = 0; i < results.length; i++) {
+
+      // Name of Bar
+      var barName = results[i].name;
+      console.log(barName);
+      // Location of the bar
+      var barLat = results[i].geometry.location.lat;
+      console.log(barLat);
+      var barLng = results[i].geometry.location.lng;
+      console.log(barLng);
+      // Address of the bar
+      var barLocation = results[i].vicinity;
+      console.log(barLocation);
+      // Price Level
+      var barPrice = results[i].price_level;
+      console.log(barPrice);
+      // Bar rating
+      var rating = results[i].rating;
+      console.log(rating);
+
+      var array = [barName, barLat, barLng];
+      barLocations.push(array);
+      console.log(array);
+
+      // function to get Markers to appear
+    getMarkers();
+
+      // Append the information to the bar-list table
+      console.log(barLocations);
+      var newRow = $("<tr>").append(
+        $("<td>").text(barName),
+        $("<td>").text(barLocation),
+        $("<td>").text(barPrice),
+        $("<td>").text(rating),
+      );
+
+      $("#bars-list > tbody").append(newRow);
+    }
+
+  });
+  
+}
+
+// Click button function to get the API bar information to show up in the table form
+$("#city-search").on("click", function (event) {
   event.preventDefault();
   document.getElementById("#geolocation-input").value;
-  
+
   console.log(queryURL);
-  // renderMarkers();
+
 });
 
 $(document).on("click", "#geolocation-input", displayBars);
 
-// <!-- VERY IMPORTANT response.results to parse the information from the queryURL
+// Append the markers to the lat/lng on the Google Map and add the name
+function getMarkers() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: new google.maps.LatLng(pos),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
 
-// renderMarkers();
+  var infowindow = new google.maps.InfoWindow();
 
+  var marker, i;
 
-// I need to call the displayBars function here
-// ? Is there some kind of .on load type event listener I could use ?
+  for (i = 0; i < barLocations.length; i++) {  
+    console.log(barLocations[i]);
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(barLocations[i][1], barLocations[i][2]),
+      map: map
+    });
+    
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(barLocations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
 
-// ? How to take in the user input City field and use that to get the position ? 
+}
 
-// I need to parse the JSON returns information from the API call to get the bar NAME, LOCATION, HOURS, RATINGS, PRICING
-
-// I may be able to do the above with the: The Atmosphere category under the Fields parameter. It includes the following fields: price_level, rating, user_ratings_total
-
-// I need to create a function to get a marker to appear for the exact lat/lng of the bar that is returned using the pos
-
-// I need to append the results of the bar Atmosphere information to the DOM in a list format
-// This list should clear if the user selects another button
-
-// 
