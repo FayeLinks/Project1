@@ -3,9 +3,9 @@
 }
 html,
 body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
         }
 
 body {
@@ -16,9 +16,10 @@ body {
 }
 
 h3 {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 20px;
     padding-left: 200px;
+
 }
 
 footer {
@@ -36,28 +37,69 @@ h1 {
     -webkit-text-fill-color: rgb(12, 133, 133);
     -webkit-text-stroke-width: 2px;
     color:white;
-    
-}
-
-.bars-img, .yelp-img {
-    margin-left: 200px;
-}
-
-.bars-img {
-    margin-bottom: 35px;
 }
 
 #map {
     height: 100%;
     width: 850px;
     margin-left: 200px;
+    top: -20px;
 }
 
-.car, .drinks {
+.car {
     margin-left: 100px;
 }
 
 /* This is the "you are here" text */
 .gm-style-iw-d {
     color: black;
+}
+
+/* Table Features */
+#bars-list {
+    width: 850px;
+    margin-left: 200px;
+}
+
+table {
+    border: 2px solid white;
+}
+
+th {
+    height: 80px; 
+    text-align: left;
+    background-color: rgb(12, 133, 133);
+    font-size: 20px;
+}
+
+/* Button Styling */
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgb(12, 133, 133);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color: rgb(12, 133, 133);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.barNearMe {
+    margin-left: 200px;
 }
